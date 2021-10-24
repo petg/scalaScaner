@@ -1,0 +1,1 @@
+resolvers += Resolver.sbtPluginRepo("releases")
