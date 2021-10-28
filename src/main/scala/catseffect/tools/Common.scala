@@ -44,6 +44,7 @@ object Common {
       s"Sensor: ${t._1}, min/avg/max = ${getMin(t._2)}/${getAvg(t._2)}/${getMax(t._2)}"
     }
 
+    //println(value.toList)
     helper(listToPrint)
   }
 
