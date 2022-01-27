@@ -4,7 +4,7 @@ import cats.effect.std.Console
 import cats.effect.{Async, IO}
 import cats.implicits.catsSyntaxFlatMapOps
 import catseffect.SensorFileReaderApp
-import catseffect.SensorFileReaderApp.AggValue
+import catseffect.SensorFileReaderApp.{AGG_QUEUE_SIZE_MAX, AggValue}
 
 import java.io.File
 
@@ -20,13 +20,13 @@ object Common {
 
    def printFileName(opFileList: Option[List[File]]):IO[Unit] =
      for {
-       _ <- IO.println("List of files:")
+       _ <- IO("List of files:")
        _ <- printFileNameInner(opFileList)
      } yield ()
 
   private def printFileNameInner(opFileList: Option[List[File]]):IO[Unit] =
     if (opFileList.nonEmpty) opFileList.get match {
-      case h :: t => IO.println(h.getName) >> printFileNameInner(Some(t))
+      case h :: t => IO(println(h.getName)) >> printFileNameInner(Some(t))
       case Nil => IO.unit
     } else IO.unit
 
